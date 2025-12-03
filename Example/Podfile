@@ -1,0 +1,6 @@
+use_frameworks!
+target 'sqlite3-arabic-phonetic-fuzzy-trigram_Tests' do
+  pod 'sqlite3-arabic-phonetic-fuzzy-trigram', :path => '../'
+  
+  
+end

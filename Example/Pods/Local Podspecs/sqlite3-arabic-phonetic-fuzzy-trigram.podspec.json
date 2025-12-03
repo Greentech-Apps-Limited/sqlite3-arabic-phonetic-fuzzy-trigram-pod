@@ -1,0 +1,22 @@
+{
+  "name": "sqlite3-arabic-phonetic-fuzzy-trigram",
+  "version": "0.1.0",
+  "summary": "A short description of sqlite3-arabic-phonetic-fuzzy-trigram.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Shahriar Nasim Nafi/sqlite3-arabic-phonetic-fuzzy-trigram",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Shahriar Nasim Nafi": "shahriarnasim.nafi@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Shahriar Nasim Nafi/sqlite3-arabic-phonetic-fuzzy-trigram.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "sqlite3-arabic-phonetic-fuzzy-trigram/Classes/**/*"
+}
