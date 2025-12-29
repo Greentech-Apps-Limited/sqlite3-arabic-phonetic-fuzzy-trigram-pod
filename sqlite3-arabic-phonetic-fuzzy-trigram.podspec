@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'sqlite3-arabic-phonetic-fuzzy-trigram'
-  s.version          = '0.0.2'
+  s.version          = '0.0.3'
   s.summary          = 'SQLite FTS5 Arabic Phonetic Fuzzy Trigram Tokenizer'
 
 
