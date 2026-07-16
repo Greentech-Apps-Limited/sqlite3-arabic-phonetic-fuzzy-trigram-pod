@@ -1,13 +1,15 @@
 module CSQLiteArabicPhoneticFuzzyTrigram {
-    // Public API of the extension: sqlite3_arabic_phonetic_fuzzy_trigram_init(...)
-    header "sqlite3-arabic-phonetic-fuzzy-trigram.h"
+    // Public API of the extension: sqlite3_arabic_phonetic_fuzzy_trigram_init(...).
+    // The headers live one level up, next to the .c (a flat layout, so CocoaPods
+    // resolves every #include by same-folder adjacency — matching the pod's
+    // original known-good behavior). This module map is the only thing in
+    // include/, which SwiftPM uses as the target's publicHeadersPath.
+    header "../sqlite3-arabic-phonetic-fuzzy-trigram.h"
 
-    // SQLite amalgamation headers are required to compile the extension, but we
-    // do NOT want to re-export the whole SQLite API (and risk clashing with the
-    // host app's own SQLite module). Expose them as textual-only so #include
-    // still resolves without pulling their declarations into this module.
-    textual header "sqlite3.h"
-    textual header "sqlite3ext.h"
+    // Compile-only SQLite headers: exposed as textual so #include resolves
+    // without pulling the whole SQLite API into this module.
+    textual header "../sqlite3.h"
+    textual header "../sqlite3ext.h"
 
     export *
 }

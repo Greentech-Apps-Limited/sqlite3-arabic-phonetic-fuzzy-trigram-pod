@@ -26,8 +26,11 @@ let package = Package(
         // instance registers it at runtime (system libsqlite3 or a bundled build
         // such as sqlite3_flutter_libs; that SQLite must have FTS5 enabled).
         //
-        // sqlite3.h / sqlite3ext.h are needed only to COMPILE, and are vendored
-        // in include/, so nothing is required from the host at build time.
+        // Layout is flat: the .c and all headers sit together in the target
+        // root (so CocoaPods resolves includes by adjacency too); include/ holds
+        // only the module map, which SwiftPM uses as publicHeadersPath.
+        // sqlite3.h / sqlite3ext.h are needed only to COMPILE and are vendored
+        // here, so nothing is required from the host at build time.
         .target(
             name: "CSQLiteArabicPhoneticFuzzyTrigram",
             path: "Sources/CSQLiteArabicPhoneticFuzzyTrigram",

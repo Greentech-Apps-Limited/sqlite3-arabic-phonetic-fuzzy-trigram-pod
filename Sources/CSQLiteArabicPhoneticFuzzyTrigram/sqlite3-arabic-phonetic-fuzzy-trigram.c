@@ -39,7 +39,7 @@ SQLITE_EXTENSION_INIT1
 /* Reported by SELECT arabic_phonetic_fuzzy_trigram_version().
 ** Bump on ANY change to token output — the backend index and the on-device
 ** queries must be produced by the same token format. */
-#define ARABIC_PHONETIC_FUZZY_TRIGRAM_VERSION "0.1.0"
+#define ARABIC_PHONETIC_FUZZY_TRIGRAM_VERSION "0.2.0"
 
 #include <stdlib.h>
 #include <string.h>

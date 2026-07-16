@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'sqlite3-arabic-phonetic-fuzzy-trigram'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'SQLite FTS5 Arabic Phonetic Fuzzy Trigram Tokenizer'
 
 
@@ -25,16 +25,20 @@ A custom SQLite FTS5 tokenizer designed for Arabic and Latin text with diacritic
   s.ios.deployment_target  = '14.0'
   s.osx.deployment_target  = '10.13'
 
-  # Sources live under Sources/ so the same files feed both CocoaPods and
-  # Swift Package Manager (see Package.swift). Only the tokenizer .c is compiled;
-  # sqlite3.h / sqlite3ext.h are private headers needed to compile against. The
-  # SQLite amalgamation (sqlite3.c) is intentionally NOT compiled — the extension
-  # binds to the host app's SQLite (via sqlite3_api) at runtime.
-  s.source_files        = 'Sources/CSQLiteArabicPhoneticFuzzyTrigram/**/*.{c,h}'
-  s.public_header_files = 'Sources/CSQLiteArabicPhoneticFuzzyTrigram/include/sqlite3-arabic-phonetic-fuzzy-trigram.h'
-  s.pod_target_xcconfig = {
-    'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/Sources/CSQLiteArabicPhoneticFuzzyTrigram/include"'
-  }
+  # The tokenizer .c and all its headers live together in one flat folder, so
+  # every #include resolves by same-folder adjacency — the pod's original,
+  # known-good behavior. (The same flat folder also serves as the SwiftPM
+  # target; see Package.swift.)
+  #
+  # Only the tokenizer .{h,c} is compiled and exposed. sqlite3.h / sqlite3ext.h
+  # are kept via preserve_paths — present next to the source so the compile
+  # resolves them, but NOT registered as managed pod headers (so CocoaPods does
+  # not relocate them into Headers/, which is what broke consumers). The SQLite
+  # amalgamation (sqlite3.c) is intentionally NOT compiled — the extension binds
+  # to the host app's SQLite (via sqlite3_api) at runtime.
+  s.source_files        = 'Sources/CSQLiteArabicPhoneticFuzzyTrigram/sqlite3-arabic-phonetic-fuzzy-trigram.{h,c}'
+  s.public_header_files = 'Sources/CSQLiteArabicPhoneticFuzzyTrigram/sqlite3-arabic-phonetic-fuzzy-trigram.h'
+  s.preserve_paths      = 'Sources/CSQLiteArabicPhoneticFuzzyTrigram/*.{c,h}'
   s.requires_arc = false
 
 end
