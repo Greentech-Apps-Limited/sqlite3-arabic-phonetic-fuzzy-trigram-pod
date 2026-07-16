@@ -22,16 +22,19 @@ A custom SQLite FTS5 tokenizer designed for Arabic and Latin text with diacritic
   s.source           = { :git => 'https://github.com/Greentech-Apps-Limited/sqlite3-arabic-phonetic-fuzzy-trigram-pod', :tag => s.version.to_s }
 
 
-  s.prepare_command = <<-CMD
-            cd sqlite3-arabic-phonetic-fuzzy-trigram/Common/
-    make sqlite3-arabic-phonetic-fuzzy-trigram.c
-  CMD
-
   s.ios.deployment_target  = '14.0'
   s.osx.deployment_target  = '10.13'
-  s.source_files = 'sqlite3-arabic-phonetic-fuzzy-trigram/Common/sqlite3-arabic-phonetic-fuzzy-trigram.{h,c}'
-  s.preserve_paths = 'sqlite3-arabic-phonetic-fuzzy-trigram/Common/*.{c,h}'
-  s.public_header_files = 'sqlite3-arabic-phonetic-fuzzy-trigram/Common/sqlite3-arabic-phonetic-fuzzy-trigram.h'
+
+  # Sources live under Sources/ so the same files feed both CocoaPods and
+  # Swift Package Manager (see Package.swift). Only the tokenizer .c is compiled;
+  # sqlite3.h / sqlite3ext.h are private headers needed to compile against. The
+  # SQLite amalgamation (sqlite3.c) is intentionally NOT compiled — the extension
+  # binds to the host app's SQLite (via sqlite3_api) at runtime.
+  s.source_files        = 'Sources/CSQLiteArabicPhoneticFuzzyTrigram/**/*.{c,h}'
+  s.public_header_files = 'Sources/CSQLiteArabicPhoneticFuzzyTrigram/include/sqlite3-arabic-phonetic-fuzzy-trigram.h'
+  s.pod_target_xcconfig = {
+    'HEADER_SEARCH_PATHS' => '"$(PODS_TARGET_SRCROOT)/Sources/CSQLiteArabicPhoneticFuzzyTrigram/include"'
+  }
   s.requires_arc = false
 
 end

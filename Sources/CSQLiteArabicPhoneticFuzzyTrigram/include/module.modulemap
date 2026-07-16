@@ -1,0 +1,13 @@
+module CSQLiteArabicPhoneticFuzzyTrigram {
+    // Public API of the extension: sqlite3_arabic_phonetic_fuzzy_trigram_init(...)
+    header "sqlite3-arabic-phonetic-fuzzy-trigram.h"
+
+    // SQLite amalgamation headers are required to compile the extension, but we
+    // do NOT want to re-export the whole SQLite API (and risk clashing with the
+    // host app's own SQLite module). Expose them as textual-only so #include
+    // still resolves without pulling their declarations into this module.
+    textual header "sqlite3.h"
+    textual header "sqlite3ext.h"
+
+    export *
+}
