@@ -13,7 +13,6 @@
  * The normalized text is then indexed as a stream of 3-character trigrams,
  * providing tolerance for typos and spelling variations.
  */
-
 #ifndef ARABIC_PHONETIC_FUZZY_TRIGRAM_H
 #define ARABIC_PHONETIC_FUZZY_TRIGRAM_H
 
